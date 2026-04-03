@@ -40,8 +40,8 @@ done_list = st.session_state[f"done_{selected_sub}"]
 st.metric(f"إنجاز {selected_sub}", f"{len(done_list)} من {total_tasks}")
 st.progress(len(done_list) / total_tasks)
 
-if st.button("حفظ التقدم ومشاركة الرابط 🔗"):
-    st.success("تم الحفظ! انسخ الرابط من أعلى المتصفح الآن.")
+if st.button("Adam fayiz "):
+    st.success("الوزاري يتصل بكة :")
 
 st.divider()
 
