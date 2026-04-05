@@ -27,7 +27,7 @@ days_left = (target_date - today).days
 if days_left > 0:
     st.markdown(f"""
         <div class="countdown-box">
-            <h3 style="margin:0; color: #31333F;">ضايل الوزاري 💀</h3>
+            <h3 style="margin:0; color: #31333F;">ضايل للوزاري 💀</h3>
             <h1 style="margin:0; color: #ff4b4b;">{days_left} يوم</h1>
         </div>
     """, unsafe_allow_html=True)
