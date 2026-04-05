@@ -27,7 +27,7 @@ days_left = (target_date - today).days
 if days_left > 0:
     st.markdown(f"""
         <div class="countdown-box">
-            <h3 style="margin:0; color: #31333F;">⏳ متبقي على الامتحان الوزاري</h3>
+            <h3 style="margin:0; color: #31333F;">ضايل الوزاري 💀</h3>
             <h1 style="margin:0; color: #ff4b4b;">{days_left} يوم</h1>
         </div>
     """, unsafe_allow_html=True)
@@ -58,8 +58,6 @@ done_list = st.session_state[f"done_{selected_sub}"]
 st.metric(f"إنجاز {selected_sub}", f"{len(done_list)} من {total_tasks}")
 st.progress(len(done_list) / total_tasks)
 
-if st.button("🤙حلمي عيسى المشاقبة "):
-    st.success("الوزاري يتصل بكة :")
 
 st.divider()
 
