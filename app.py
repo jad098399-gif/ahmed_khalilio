@@ -1,39 +1,25 @@
 import streamlit as st
 from datetime import date
+import streamlit.components.v1 as components
 
 # إعدادات الصفحة
-st.set_page_config(page_title="المعسكر النهائي 2008", layout="centered")
+st.set_page_config(page_title="المعسكر النهائي 2008", layout="centered", page_icon="🔥")
 
-# التنسيق العربي وحقوق الملكية وتنسيق الإشعار الجديد
+# التنسيق العربي وحقوق الملكية وتنسيق الإشعار والعد التنازلي
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
     html, body, [data-testid="stSidebar"], .st-emotion-cache-10trblm {
         direction: RTL; text-align: right; font-family: 'Cairo', sans-serif;
     }
-    .footer { position: fixed; left: 0; bottom: 0; width: 100%; color: grey; text-align: center; font-size: 12px; padding: 10px; }
-    .countdown-box { background-color: #f0f2f6; padding: 15px; border-radius: 10px; text-align: center; border: 1px solid #ff4b4b; margin-bottom: 20px; }
-    
-    /* تنسيق زر الإشعار الواقعي */
-    .stButton > button {
-        width: 100%;
-        background-color: #ff4b4b;
-        color: white;
-        border-radius: 10px;
-        border: none;
-        padding: 15px;
-        font-weight: bold;
-        font-size: 18px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        transition: background-color 0.3s, transform 0.2s;
-    }
-    .stButton > button:hover {
-        background-color: #ff3333;
-        transform: scale(1.02);
-    }
-    .stButton > button:active {
-        background-color: #cc0000;
-        transform: scale(0.98);
+    .footer { position: fixed; left: 0; bottom: 0; width: 100%; color: grey; text-align: center; font-size: 12px; padding: 10px; background: rgba(255,255,255,0.8); z-index: 100; }
+    .countdown-box { 
+        background-color: #1a1a1a; 
+        padding: 20px; border-radius: 15px; 
+        text-align: center; border: 2px solid #ff4b4b; 
+        margin-bottom: 20px; color: white;
+        background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://raw.githubusercontent.com/jad098399-gif/ahmed_khalilio/main/chase_scene.mp4');
+        background-size: cover;
     }
     </style>
     <div class="footer">جميع الحقوق محفوظة لـ adam fayiz @mshqabi ©</div>
@@ -41,7 +27,7 @@ st.markdown("""
 
 st.title("🔥 المعسكر النهائي 2008")
 
-# --- إضافة العد التنازلي ---
+# --- العد التنازلي ---
 target_date = date(2026, 6, 25)
 today = date.today()
 days_left = (target_date - today).days
@@ -49,19 +35,35 @@ days_left = (target_date - today).days
 if days_left > 0:
     st.markdown(f"""
         <div class="countdown-box">
-            <h3 style="margin:0; color: #31333F;">⏳💀 ضايل للوزاري</h3>
+            <h3 style="margin:0;">🎬 الهروب التوجيهي الكبير</h3>
+            <p style="margin:0; font-size: 12px;">أنت تهرب من تنين الوزاري..</p>
             <h1 style="margin:0; color: #ff4b4b;">{days_left} يوم</h1>
         </div>
     """, unsafe_allow_html=True)
-else:
-    st.error("🚀 بدأت الامتحانات! بالتوفيق يا وحش")
-# --------------------------
 
-# --- إضافة زر الإشعار الواقعي ---
+# --- زر الإشعار ---
 if st.button("📞 99+ مكالمة فائتة"):
     st.warning("⚠️ الوزاري يتصل بكة :")
-# -------------------------------
 
+# --- قسم الشطرنج الجديد ---
+st.divider()
+if "play_chess" not in st.session_state:
+    st.session_state.play_chess = False
+
+col_chess, _ = st.columns([0.4, 0.6])
+with col_chess:
+    if st.button("🎮 اضغط للعب الشطرنج"):
+        st.session_state.play_chess = not st.session_state.play_chess
+
+if st.session_state.play_chess:
+    st.markdown("### ♟️ تحدى المحرك العالمي (2D)")
+    # دمج لوحة شطرنج احترافية من Lichess (خفيفة وسريعة وواقعية)
+    components.iframe("https://lichess.org/embed/export/fen/rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR?theme=brown&bg=light", height=400)
+    st.caption("ملاحظة: يمكنك اللعب وتجربة النقلات الاحترافية هنا.")
+
+st.divider()
+
+# --- نظام المهام (بدون أي تغيير) ---
 subjects_info = {
     "الرياضيات": {"total": 70, "prefix": "ADV"},
     "الأحياء": {"total": 60, "prefix": "BIO"},
@@ -73,25 +75,17 @@ selected_sub = st.selectbox("اختر المادة:", list(subjects_info.keys())
 prefix = subjects_info[selected_sub]["prefix"]
 total_tasks = subjects_info[selected_sub]["total"]
 
-# استخدام Query Params للحفظ في الرابط
 if f"done_{selected_sub}" not in st.session_state:
-    # محاولة جلب البيانات من الرابط إذا وجدت
     query_data = st.query_params.get_all(f"d_{prefix}")
     st.session_state[f"done_{selected_sub}"] = [int(x) for x in query_data] if query_data else []
 
 done_list = st.session_state[f"done_{selected_sub}"]
 
-# الإحصائيات
 st.metric(f"إنجاز {selected_sub}", f"{len(done_list)} من {total_tasks}")
 st.progress(len(done_list) / total_tasks)
 
-# استبدال زر "حلمي عيسى المشاقبة" بزر الإشعار الجديد أعلاه
-# if st.button("🤙حلمي عيسى المشاقبة "):
-#     st.success("الوزاري يتصل بكة :")
-
 st.divider()
 
-# عرض المهام
 for i in range(1, total_tasks + 1):
     cols = st.columns([0.8, 0.2])
     is_done = i in done_list
