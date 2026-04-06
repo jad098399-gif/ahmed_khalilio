@@ -31,11 +31,11 @@ if st.button("📞 99+ مكالمة فائتة"):
 
 # --- زر الشطرنج الاحترافي (حل مشكلة السطر 3) ---
 st.divider()
-st.markdown("### ♟️ ركن التحدي")
+st.markdown("### ♟️ chess ")
 # هذا الزر يفتح لك لوحة شطرنج 2D احترافية في صفحة جديدة دون أن يعطل موقعك
 chess_url = "https://lichess.org/repro" 
-st.link_button("🎮 اضغط للعب شطرنج 2D واقعي", chess_url, use_container_width=True)
-st.caption("سيفتح التحدي في نافذة جديدة لضمان سرعة الموقع.")
+st.link_button("🎮 بدأ ", chess_url, use_container_width=True)
+st.caption("جميع الحقوق محفوظة لـ adam fayiz @mshqabi ")
 
 st.divider()
 
