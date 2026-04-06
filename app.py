@@ -1,11 +1,11 @@
 import streamlit as st
 from datetime import date
-import streamlit.components.v1 as components
+from streamlit_chess import chess
 
 # إعدادات الصفحة
 st.set_page_config(page_title="المعسكر النهائي 2008", layout="centered", page_icon="🔥")
 
-# التنسيق العربي وحقوق الملكية وتنسيق الإشعار والعد التنازلي
+# التنسيق العربي (CSS)
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
@@ -18,8 +18,6 @@ st.markdown("""
         padding: 20px; border-radius: 15px; 
         text-align: center; border: 2px solid #ff4b4b; 
         margin-bottom: 20px; color: white;
-        background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://raw.githubusercontent.com/jad098399-gif/ahmed_khalilio/main/chase_scene.mp4');
-        background-size: cover;
     }
     </style>
     <div class="footer">جميع الحقوق محفوظة لـ adam fayiz @mshqabi ©</div>
@@ -29,41 +27,31 @@ st.title("🔥 المعسكر النهائي 2008")
 
 # --- العد التنازلي ---
 target_date = date(2026, 6, 25)
-today = date.today()
-days_left = (target_date - today).days
-
+days_left = (target_date - date.today()).days
 if days_left > 0:
-    st.markdown(f"""
-        <div class="countdown-box">
-            <h3 style="margin:0;">🎬 الهروب التوجيهي الكبير</h3>
-            <p style="margin:0; font-size: 12px;">أنت تهرب من تنين الوزاري..</p>
-            <h1 style="margin:0; color: #ff4b4b;">{days_left} يوم</h1>
-        </div>
-    """, unsafe_allow_html=True)
+    st.markdown(f'<div class="countdown-box"><h3>🎬 الهروب من تنين الوزاري</h3><h1>{days_left} يوم</h1></div>', unsafe_allow_html=True)
 
 # --- زر الإشعار ---
 if st.button("📞 99+ مكالمة فائتة"):
-    st.warning("⚠️ الوزاري يتصل بكة :")
+    st.warning("⚠️ الوزاري يتصل بك :")
 
-# --- قسم الشطرنج الجديد ---
+# --- قسم الشطرنج المطور (الحل الجديد) ---
 st.divider()
 if "play_chess" not in st.session_state:
     st.session_state.play_chess = False
 
-col_chess, _ = st.columns([0.4, 0.6])
-with col_chess:
-    if st.button("🎮 اضغط للعب الشطرنج"):
-        st.session_state.play_chess = not st.session_state.play_chess
+if st.button("🎮 اضغط للعب الشطرنج"):
+    st.session_state.play_chess = not st.session_state.play_chess
 
 if st.session_state.play_chess:
-    st.markdown("### ♟️ تحدى المحرك العالمي (2D)")
-    # دمج لوحة شطرنج احترافية من Lichess (خفيفة وسريعة وواقعية)
-    components.iframe("https://lichess.org/embed/export/fen/rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR?theme=brown&bg=light", height=400)
-    st.caption("ملاحظة: يمكنك اللعب وتجربة النقلات الاحترافية هنا.")
+    st.markdown("### ♟️ لوحة التحدي الاحترافية (2D)")
+    # استخدام مكتبة مدمجة لا ترفض الاتصال
+    out = chess(key="pro_chess_board")
+    st.info("اسحب القطع للعب. يمكنك تحليل نقلاتك هنا!")
 
 st.divider()
 
-# --- نظام المهام (بدون أي تغيير) ---
+# --- باقي كود المهام الأصلي (بدون تغيير) ---
 subjects_info = {
     "الرياضيات": {"total": 70, "prefix": "ADV"},
     "الأحياء": {"total": 60, "prefix": "BIO"},
@@ -80,7 +68,6 @@ if f"done_{selected_sub}" not in st.session_state:
     st.session_state[f"done_{selected_sub}"] = [int(x) for x in query_data] if query_data else []
 
 done_list = st.session_state[f"done_{selected_sub}"]
-
 st.metric(f"إنجاز {selected_sub}", f"{len(done_list)} من {total_tasks}")
 st.progress(len(done_list) / total_tasks)
 
