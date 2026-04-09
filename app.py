@@ -32,7 +32,6 @@ st.markdown("### ♟️ chess ")
 # هذا الزر يفتح لك لوحة شطرنج 2D احترافية في صفحة جديدة دون أن يعطل موقعك
 chess_url = "https://lichess.org/repro" 
 st.link_button("🎮 بدأ ", chess_url, use_container_width=True)
-st.caption("جميع الحقوق محفوظة لـ adam fayiz @mshqabi ")
 
 st.divider()
 st.markdown("### absi kick 💚 ")
@@ -41,4 +40,16 @@ chess_url = "https://kick.com/absi"
 st.link_button(" دخول عالبث 🥇 ", chess_url, use_container_width=True)
 
 st.divider()
+st.markdown("### Instagram 📷")
+
+chess_url = "https://www.instagram.com/mshqabi/" 
+st.link_button(" فتح انستا 💤 ", chess_url, use_container_width=True)
+
+st.caption("جميع الحقوق محفوظة لـ adam fayiz @mshqabi ")
+
+
+
+
+st.divider()
+
 
