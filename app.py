@@ -2,7 +2,7 @@ import streamlit as st
 from datetime import date
 
 # إعدادات الصفحة - تأكد أنها أول سطر برمجي
-st.set_page_config(page_title="nothing", layout="centered", page_icon="🔥")
+st.set_page_config(page_title="Adam's page", layout="centered", page_icon="🤙")
 
 # التنسيق العربي وحقوق الملكية
 st.markdown("""
@@ -17,7 +17,7 @@ st.markdown("""
     <div class="footer">جميع الحقوق محفوظة لـ adam fayiz @mshqabi ©</div>
     """, unsafe_allow_html=True)
 
-st.title("afm")
+st.title("nothing...")
 
 # --- العداد التنازلي ---
 target_date = date(2026, 6, 25)
