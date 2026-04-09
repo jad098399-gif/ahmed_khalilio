@@ -1,4 +1,4 @@
-Import streamlit as st
+import streamlit as st
 from datetime import date
 
 # إعدادات الصفحة - تأكد أنها أول سطر برمجي
