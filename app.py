@@ -25,9 +25,6 @@ days_left = (target_date - date.today()).days
 if days_left > 0:
     st.markdown(f'<div class="countdown-box"><h3>⏳ متبقي على الوزاري</h3><h1>{days_left} يوم</h1></div>', unsafe_allow_html=True)
 
-# --- زر الإشعار ---
-if st.button("📞 99+ مكالمة فائتة"):
-    st.warning("⚠️ الوزاري يتصل بك :")
 
 # --- زر الشطرنج الاحترافي (حل مشكلة السطر 3) ---
 st.divider()
@@ -39,41 +36,3 @@ st.caption("جميع الحقوق محفوظة لـ adam fayiz @mshqabi ")
 
 st.divider()
 
-# --- نظام المهام الأصلي ---
-subjects_info = {
-    "الرياضيات": {"total": 70, "prefix": "ADV"},
-    "الأحياء": {"total": 60, "prefix": "BIO"},
-    "علوم الأرض": {"total": 48, "prefix": "GEO"},
-    "التربية الإسلامية": {"total": 48, "prefix": "ISL"}
-}
-
-selected_sub = st.selectbox("اختر المادة:", list(subjects_info.keys()))
-prefix = subjects_info[selected_sub]["prefix"]
-total_tasks = subjects_info[selected_sub]["total"]
-
-if f"done_{selected_sub}" not in st.session_state:
-    query_data = st.query_params.get_all(f"d_{prefix}")
-    st.session_state[f"done_{selected_sub}"] = [int(x) for x in query_data] if query_data else []
-
-done_list = st.session_state[f"done_{selected_sub}"]
-st.metric(f"إنجاز {selected_sub}", f"{len(done_list)} من {total_tasks}")
-st.progress(len(done_list) / total_tasks)
-
-st.divider()
-
-for i in range(1, total_tasks + 1):
-    cols = st.columns([0.8, 0.2])
-    is_done = i in done_list
-    with cols[0]:
-        st.write(f"**{prefix} {i}** {'✅' if is_done else '⏳'}")
-    with cols[1]:
-        if st.checkbox("", value=is_done, key=f"chk_{prefix}_{i}"):
-            if i not in done_list:
-                done_list.append(i)
-                st.query_params[f"d_{prefix}"] = done_list
-                st.rerun()
-        else:
-            if i in done_list:
-                done_list.remove(i)
-                st.query_params[f"d_{prefix}"] = done_list
-                st.rerun()
