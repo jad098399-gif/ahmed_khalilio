@@ -34,5 +34,9 @@ chess_url = "https://lichess.org/repro"
 st.link_button("🎮 بدأ ", chess_url, use_container_width=True)
 st.caption("جميع الحقوق محفوظة لـ adam fayiz @mshqabi ")
 
+
+chess_url = "https://kick.com/absi" 
+st.link_button("🎮 بدأ ", chess_url, use_container_width=True)
+
 st.divider()
 
