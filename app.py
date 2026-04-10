@@ -29,10 +29,10 @@ if days_left > 0:
 # --- زر الشطرنج الاحترافي (حل مشكلة السطر 3) ---
 
 st.divider()
-st.markdown("### Instagram 📷")
+st.markdown("###  ")
 
 chess_url = "https://www.instagram.com/mshqabi/" 
-st.link_button(" فتح انستا 💤 ", chess_url, use_container_width=True)
+st.link_button(" 💤 ", chess_url, use_container_width=True)
 
 st.caption("جميع الحقوق محفوظة لـ adam fayiz @mshqabi ")
 
