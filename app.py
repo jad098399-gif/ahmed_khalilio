@@ -27,17 +27,6 @@ if days_left > 0:
 
 
 # --- زر الشطرنج الاحترافي (حل مشكلة السطر 3) ---
-st.divider()
-st.markdown("### ♟️ chess ")
-# هذا الزر يفتح لك لوحة شطرنج 2D احترافية في صفحة جديدة دون أن يعطل موقعك
-chess_url = "https://lichess.org/repro" 
-st.link_button("🎮 بدأ ", chess_url, use_container_width=True)
-
-st.divider()
-st.markdown("### absi kick 💚 ")
-
-chess_url = "https://kick.com/absi" 
-st.link_button(" دخول عالبث 🥇 ", chess_url, use_container_width=True)
 
 st.divider()
 st.markdown("### Instagram 📷")
